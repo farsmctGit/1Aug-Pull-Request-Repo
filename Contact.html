@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Contosi IT Solutions</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0f1d2d;
+      --panel: rgba(19, 36, 56, 0.82);
+      --line: rgba(255, 255, 255, 0.12);
+      --primary: #34d1bf;
+      --secondary: #6aa8ff;
+      --text: #ecf4ff;
+      --muted: #a4b5c7;
+      --accent: #f6c65b;
+      --dark-text: #112233;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #061018 0%, #0d1f31 50%, #11263f 100%);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(7,17,31,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      gap: 22px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 0 18px rgba(52,209,191,0.8);
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #081d2a;
+      padding: 0.92rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 15px 35px rgba(52,209,191,0.25);
+    }
+
+    .hero {
+      padding: 72px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(52,209,191,0.08);
+      border: 1px solid rgba(52,209,191,0.2);
+      color: var(--primary);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 600px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(4,16,31,0.35);
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(12,25,38,0.75);
+      padding: 0.95rem 1rem;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .field textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .info-panel,
+    .brief-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .info-panel h3,
+    .brief-card h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, rgba(52,209,191,0.2), rgba(106,168,255,0.2));
+      border: 1px solid rgba(106,168,255,0.28);
+      flex-shrink: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-item span,
+    .brief-card p,
+    .brief-card li {
+      color: var(--muted);
+    }
+
+    .brief-card ul {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    footer {
+      padding: 26px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 42px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="logo" aria-label="Contosi IT Solutions logo">
+        <span class="logo-mark"></span>
+        Contosi <span>IT Solutions</span>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="Index.html">Home</a>
+        <a href="Index.html#services">Services</a>
+        <a href="Index.html#solutions">Solutions</a>
+        <a href="Contact.html">Contact</a>
+      </nav>
+
+      <a class="primary-btn" href="Contact.html">Talk to an Expert</a>
+    </div>
+  </header>
+
+  <main class="container hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Let’s connect</div>
+        <h1>Need a smarter IT partner?</h1>
+        <p class="subtitle">
+          Tell us what your business needs and our team will help you design a secure,
+          scalable technology roadmap that supports growth and operational efficiency.
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <form class="form-grid">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Your name" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="name@company.com" />
+          </div>
+
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" type="text" placeholder="Your company" />
+          </div>
+
+          <div class="field">
+            <label for="message">How can we help?</label>
+            <textarea id="message" placeholder="Tell us about your project or challenges..."></textarea>
+          </div>
+
+          <button class="primary-btn" type="submit" style="border:none; cursor:pointer; width:100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="info-panel">
+        <h3>Contact Information</h3>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="icon">📍</div>
+            <div>
+              <strong>Office</strong>
+              <span>1450 Market Street, Suite 400<br />San Francisco, CA</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon">📞</div>
+            <div>
+              <strong>Phone</strong>
+              <span>+1 (415) 555-0148</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>hello@contosiit.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brief-card">
+        <h3>Why clients choose us</h3>
+        <p>We help organizations simplify operations, improve security, and adopt technology with confidence.</p>
+        <ul>
+          <li>Strategic IT consulting tailored to your business goals</li>
+          <li>Fast response times and ongoing support</li>
+          <li>Secure, scalable solutions for long-term growth</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div class="logo" aria-label="Contosi IT Solutions logo">
+        <span class="logo-mark"></span>
+        Contosi <span>IT Solutions</span>
+      </div>
+      <div>© 2026 Contosi IT Solutions</div>
+    </div>
+  </footer>
+</body>
+</html>
